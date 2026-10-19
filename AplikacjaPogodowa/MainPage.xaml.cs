@@ -1,4 +1,6 @@
-﻿namespace AplikacjaPogodowa
+﻿using Pogoda;
+
+namespace AplikacjaPogodowa
 {
     public partial class MainPage : ContentPage
     {
@@ -20,6 +22,12 @@
                 double longitude = lastLocation.longitude;
 
                 locationBtn.Text = $"\ueb1a {lastLocation.name}, {lastLocation.admin1}";
+                var weather = await GetWeatherData.LoadData(latitude, longitude);
+                if (weather is null)
+                    return;
+                UpdateCurrentWeather.Update(weather, currentTemp, currentWeatherCodeText, feelsLike, currentWindData, currentHumidity, currentPressure);
+                UpdateHourlyWeather.Update(weather, hourlyForecast);
+                UpdateDailyWeather.Update(weather, dailyForecast);
             }
             catch (Exception ex)
             {
