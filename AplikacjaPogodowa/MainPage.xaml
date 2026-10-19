@@ -6,120 +6,112 @@
              Shell.NavBarIsVisible="False">
 
     <ScrollView
-        Margin="2,10,0,0"
+        Margin="1,10,1,0"
+        Padding="2,0,2,0"
         VerticalScrollBarVisibility="Never">
         <VerticalStackLayout
-            Spacing="5"
-            Padding="0,0,0,0">
+            Spacing="5">
             <Button
-                 x:Name="locationBtn"
-                 Text="&#xeb1a; Miasto, Województwo"
-                 FontSize="20"/>
-            <HorizontalStackLayout
-                HorizontalOptions="Center">
-                <Label 
-                x:Name="currentTemp"
-                Text="XX.Y&#x00B0;C"
-                FontSize="50"/>
-                <Label 
-                x:Name="currentWeatherCodeText"
-                Text="Przelotne opady deszczu"
-                Padding="0,0,30,0"
-                MaxLines="2"
-                LineBreakMode="WordWrap"
-                VerticalTextAlignment="Center"
-                HorizontalTextAlignment="Center"
-                FontSize="25"
-                WidthRequest="230"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout
-                HorizontalOptions="Center">
+                x:Name="locationBtn"
+                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#2C2C2C}"
+                TextColor="{AppThemeBinding Light=#1B1B1B, Dark=#FFFFFF}"
+                Text="&#xeb1a; Miasto, Województwo"
+                FontSize="20"/>
+            <Grid ColumnDefinitions="Auto,*"
+                HorizontalOptions="Fill"
+                ColumnSpacing="10">
                 <Label
-                    HorizontalTextAlignment="Start"
-                    x:Name="feelsLike"
+                    x:Name="currentTemp"
+                    Grid.Column="0"
                     Text="XX.Y&#x00B0;C"
-                    FontSize="25"/>
-                <Label 
+                    FontSize="40"
+                    VerticalTextAlignment="Center"
+                    HorizontalOptions="Start"/>
+                <Label
+                    x:Name="currentWeatherCodeText"
+                    Grid.Column="1"
+                    Text="Przelotne opady deszczu"
+                    MaxLines="2"
+                    LineBreakMode="WordWrap"
+                    VerticalTextAlignment="Center"
                     HorizontalTextAlignment="End"
+                    FontSize="25"
+                    HorizontalOptions="Fill"/>
+            </Grid>
+            <Grid ColumnDefinitions="Auto,*"
+                HorizontalOptions="Fill"
+                ColumnSpacing="10">
+                <Label
+                    x:Name="feelsLike"
+                    Grid.Column="0"
+                    Text="XX.Y&#x00B0;C"
+                    FontSize="25"
+                    HorizontalTextAlignment="Start"
+                    VerticalTextAlignment="Center"/>
+
+                <Label
                     x:Name="currentWindData"
+                    Grid.Column="1"
                     Text="&#xf059d; XX.Ykm/h&#xe353;"
                     FontSize="25"
-                    WidthRequest="270"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout
-                HorizontalOptions="Center">
+                    HorizontalTextAlignment="End"
+                    VerticalTextAlignment="Center"
+                    HorizontalOptions="Fill"/>
+            </Grid>
+            <Grid ColumnDefinitions="Auto,*"
+                HorizontalOptions="Fill"
+                ColumnSpacing="10">
+
                 <Label
                     x:Name="currentHumidity"
+                    Grid.Column="0"
                     Text="&#xe373; XX%"
-                    FontSize="25"/>
+                    FontSize="25"
+                    HorizontalTextAlignment="Start"
+                    VerticalTextAlignment="Center"/>
                 <Label
                     x:Name="currentPressure"
+                    Grid.Column="1"
                     Text="&#xe372;XXXX hPa"
                     FontSize="25"
                     HorizontalTextAlignment="End"
-                    WidthRequest="280"/>
-            </HorizontalStackLayout>
+                    VerticalTextAlignment="Center"
+                    HorizontalOptions="Fill"/>
+            </Grid>
             <ScrollView
                 Orientation="Horizontal"
-                HorizontalScrollBarVisibility="Never">
+                HorizontalScrollBarVisibility="Never"
+                x:Name="hourlyScroll">
                 <Grid
                     x:Name="hourlyForecast"
-                    RowDefinitions="150"
-                    ColumnDefinitions="75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75"
-                    >
+                    RowDefinitions="Auto">
                 </Grid>
             </ScrollView>
             <Grid RowDefinitions="60, 60, 60, 60, 60, 60, 60"
-                  ColumnDefinitions="380"
-                  HeightRequest="420"
-                  Margin="0,10,0,0"
+                  ColumnDefinitions="*"
+                  HorizontalOptions="Fill"
                   x:Name="dailyForecast">
-                <Grid
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    RowDefinitions="60"
-                    ColumnDefinitions="30, 150, 190"
-                    BackgroundColor="Red"
-                    Margin="0,0,5,0">
-                    <Label
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Text="Dzisiaj"
-                        FontSize="25"
-                        VerticalTextAlignment="Center"
-                        HorizontalTextAlignment="Start"
-                        Padding="5,0,0,0"/>
-                    <Label
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Text="&#xe31a;"
-                        FontSize="50"
-                        VerticalTextAlignment="Start"
-                        HorizontalOptions="Start"
-                        TranslationY="-10"/>
-                    <Label
-                        Grid.Row="0"
-                        Grid.Column="2"
-                        Text="&#xe353;XX.Y&#x00B0; &#xe340;XX.Y&#x00B0;"
-                        FontSize="20"
-                        VerticalTextAlignment="Center"
-                        HorizontalTextAlignment="End"
-                        HorizontalOptions="End"
-                        Padding="0,0,5,0"/>
-                </Grid>
             </Grid>
             <Grid
-                RowDefinitions="150"
-                ColumnDefinitions="190, 190">
-                <Label 
+                RowDefinitions="auto"
+                ColumnDefinitions="*, *"
+                ColumnSpacing="10">
+                <Border
                     Grid.Row="0"
                     Grid.Column="0"
-                    Background="Blue"/>
-                <Label 
-                    Margin="5,0,0,0"
+                    Stroke="Gray"
+                    StrokeThickness="1">
+                    <Label
+                        x:Name="sunLbl"/>
+                </Border>
+                <Border
                     Grid.Row="0"
                     Grid.Column="1"
-                    Background="Red"/>
+                    Stroke="Gray"
+                    StrokeThickness="1">
+                    <Label
+                        x:Name="moonLbl"/>
+                </Border>
             </Grid>
         </VerticalStackLayout>
     </ScrollView>

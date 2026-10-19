@@ -20,38 +20,45 @@ namespace Pogoda
                     dayName = date.ToString("dddd", new CultureInfo("pl-PL"));
                     dayName = char.ToUpper(dayName[0], new CultureInfo("pl-PL")) + dayName.Substring(1);
                 }
-                HorizontalStackLayout day = new HorizontalStackLayout();
+                Grid day = new Grid
+                {
+                    HorizontalOptions = LayoutOptions.Fill,
+                    ColumnDefinitions =
+                    {
+                        new ColumnDefinition(GridLength.Auto), // Weather icon
+                        new ColumnDefinition(GridLength.Star), // Day name
+                        new ColumnDefinition(GridLength.Auto)  // Temperature
+                    }
+                };
                 Border dayBorder = new Border
                 {
                     Stroke = Colors.Gray,
                     StrokeThickness = 1,
                     Margin = new Thickness(1),
-                    Content = day,
+                    Content = day
                 };
-                day.Children.Add(new Label
+                day.Add(new Label
                 {
                     FontSize = 40,
                     Text = WeatherCodeHelper.GetIcon(weather.DailyWeather?.WeatherCode?[i] ?? 0),
-                    HorizontalOptions = LayoutOptions.Start,
-                    VerticalTextAlignment = TextAlignment.Start,
-                    Padding = new Thickness(5,0,2,0)
-                });
-                day.Children.Add(new Label
+                    VerticalTextAlignment = TextAlignment.Center,
+                    Padding = new Thickness(5,0,0,0)
+                }, 0, 0);
+                day.Add(new Label
                 {
                     FontSize = 20,
                     Text = dayName,
-                    HorizontalTextAlignment = TextAlignment.Start,
                     VerticalTextAlignment = TextAlignment.Center,
-                    Padding = new Thickness(0, 0, 20, 0)
-                });
-                day.Children.Add(new Label
+                    Padding = new Thickness(5, 0, 0, 0)
+                }, 1, 0);
+                day.Add(new Label
                 {
                     FontSize = 20,
-                    Text = $"\ue353{weather.DailyWeather?.TemperatureMax?[i]}\u00B0C \ue340{weather.DailyWeather?.TemperatureMin?[i]}\u00B0C",
+                    Text = $"\ue353{weather.DailyWeather?.TemperatureMax?[i].ToString("F1", CultureInfo.InvariantCulture)}\u00B0C \ue340{weather.DailyWeather?.TemperatureMin?[i].ToString("F1", CultureInfo.InvariantCulture)}\u00B0C",
                     HorizontalTextAlignment = TextAlignment.Start,
-                    HorizontalOptions = LayoutOptions.End,
                     VerticalTextAlignment = TextAlignment.Center,
-                });
+                    Padding = new Thickness(0, 0, 5, 0)
+                }, 2, 0);
                 Grid.SetRow(dayBorder, row);
                 Grid.SetColumn(dayBorder, col);
                 row++;

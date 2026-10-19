@@ -26,7 +26,7 @@ namespace AplikacjaPogodowa
                 if (weather is null)
                     return;
                 UpdateCurrentWeather.Update(weather, currentTemp, currentWeatherCodeText, feelsLike, currentWindData, currentHumidity, currentPressure);
-                UpdateHourlyWeather.Update(weather, hourlyForecast);
+                UpdateHourlyWeather.Update(weather, hourlyForecast, hourlyScroll);
                 UpdateDailyWeather.Update(weather, dailyForecast);
             }
             catch (Exception ex)
