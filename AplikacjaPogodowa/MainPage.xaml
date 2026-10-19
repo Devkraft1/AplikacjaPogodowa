@@ -6,8 +6,8 @@
              Shell.NavBarIsVisible="False">
 
     <ScrollView
-        Margin="1,10,1,0"
-        Padding="2,0,2,0"
+        Margin="1,10,1,1"
+        Padding="2,0,2,2"
         VerticalScrollBarVisibility="Never">
         <VerticalStackLayout
             Spacing="5">
@@ -95,23 +95,8 @@
             <Grid
                 RowDefinitions="auto"
                 ColumnDefinitions="*, *"
-                ColumnSpacing="10">
-                <Border
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Stroke="Gray"
-                    StrokeThickness="1">
-                    <Label
-                        x:Name="sunLbl"/>
-                </Border>
-                <Border
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Stroke="Gray"
-                    StrokeThickness="1">
-                    <Label
-                        x:Name="moonLbl"/>
-                </Border>
+                ColumnSpacing="5"
+                x:Name="SunMoonData">
             </Grid>
         </VerticalStackLayout>
     </ScrollView>

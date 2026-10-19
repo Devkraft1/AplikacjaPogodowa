@@ -28,6 +28,7 @@ namespace AplikacjaPogodowa
                 UpdateCurrentWeather.Update(weather, currentTemp, currentWeatherCodeText, feelsLike, currentWindData, currentHumidity, currentPressure);
                 UpdateHourlyWeather.Update(weather, hourlyForecast, hourlyScroll);
                 UpdateDailyWeather.Update(weather, dailyForecast);
+                UpdateSunMoondata.Update(weather, SunMoonData);
             }
             catch (Exception ex)
             {
