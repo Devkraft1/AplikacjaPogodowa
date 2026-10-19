@@ -11,6 +11,7 @@ namespace AplikacjaPogodowa
         }
         private async void LoadWeatherData()
         {
+            LoadingOverlay.IsVisible = true;
             try
             {
                 var lastLocation = await LoadLast.LoadLastCity();
@@ -33,6 +34,10 @@ namespace AplikacjaPogodowa
             catch (Exception ex)
             {
                 await DisplayAlertAsync("Error", ex.Message, "OK");
+            }
+            finally
+            {
+                LoadingOverlay.IsVisible = false;
             }
         }
     }

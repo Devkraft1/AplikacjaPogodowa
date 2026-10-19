@@ -5,29 +5,34 @@
              x:Class="AplikacjaPogodowa.MainPage"
              Shell.NavBarIsVisible="False">
 
-    <ScrollView
+    <Grid>
+        <ScrollView
         Margin="1,10,1,1"
         Padding="2,0,2,2"
         VerticalScrollBarVisibility="Never">
-        <VerticalStackLayout
+            <VerticalStackLayout
             Spacing="5">
-            <Button
-                x:Name="locationBtn"
-                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#2C2C2C}"
-                TextColor="{AppThemeBinding Light=#1B1B1B, Dark=#FFFFFF}"
-                Text="&#xeb1a; Miasto, Województwo"
-                FontSize="20"/>
-            <Grid ColumnDefinitions="Auto,*"
+                <Border
+                Stroke="Gray"
+                StrokeThickness="1">
+                    <Button
+                    x:Name="locationBtn"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#2C2C2C}"
+                    TextColor="{AppThemeBinding Light=#1B1B1B, Dark=#FFFFFF}"
+                    Text="&#xeb1a; Miasto, Województwo"
+                    FontSize="20"/>
+                </Border>
+                <Grid ColumnDefinitions="Auto,*"
                 HorizontalOptions="Fill"
                 ColumnSpacing="10">
-                <Label
+                    <Label
                     x:Name="currentTemp"
                     Grid.Column="0"
                     Text="XX.Y&#x00B0;C"
                     FontSize="40"
                     VerticalTextAlignment="Center"
                     HorizontalOptions="Start"/>
-                <Label
+                    <Label
                     x:Name="currentWeatherCodeText"
                     Grid.Column="1"
                     Text="Przelotne opady deszczu"
@@ -37,11 +42,11 @@
                     HorizontalTextAlignment="End"
                     FontSize="25"
                     HorizontalOptions="Fill"/>
-            </Grid>
-            <Grid ColumnDefinitions="Auto,*"
+                </Grid>
+                <Grid ColumnDefinitions="Auto,*"
                 HorizontalOptions="Fill"
                 ColumnSpacing="10">
-                <Label
+                    <Label
                     x:Name="feelsLike"
                     Grid.Column="0"
                     Text="XX.Y&#x00B0;C"
@@ -49,7 +54,7 @@
                     HorizontalTextAlignment="Start"
                     VerticalTextAlignment="Center"/>
 
-                <Label
+                    <Label
                     x:Name="currentWindData"
                     Grid.Column="1"
                     Text="&#xf059d; XX.Ykm/h&#xe353;"
@@ -57,19 +62,19 @@
                     HorizontalTextAlignment="End"
                     VerticalTextAlignment="Center"
                     HorizontalOptions="Fill"/>
-            </Grid>
-            <Grid ColumnDefinitions="Auto,*"
+                </Grid>
+                <Grid ColumnDefinitions="Auto,*"
                 HorizontalOptions="Fill"
                 ColumnSpacing="10">
 
-                <Label
+                    <Label
                     x:Name="currentHumidity"
                     Grid.Column="0"
                     Text="&#xe373; XX%"
                     FontSize="25"
                     HorizontalTextAlignment="Start"
                     VerticalTextAlignment="Center"/>
-                <Label
+                    <Label
                     x:Name="currentPressure"
                     Grid.Column="1"
                     Text="&#xe372;XXXX hPa"
@@ -77,27 +82,50 @@
                     HorizontalTextAlignment="End"
                     VerticalTextAlignment="Center"
                     HorizontalOptions="Fill"/>
-            </Grid>
-            <ScrollView
+                </Grid>
+                <ScrollView
                 Orientation="Horizontal"
                 HorizontalScrollBarVisibility="Never"
                 x:Name="hourlyScroll">
-                <Grid
+                    <Grid
                     x:Name="hourlyForecast"
                     RowDefinitions="Auto">
-                </Grid>
-            </ScrollView>
-            <Grid RowDefinitions="60, 60, 60, 60, 60, 60, 60"
+                    </Grid>
+                </ScrollView>
+                <Grid RowDefinitions="60, 60, 60, 60, 60, 60, 60"
                   ColumnDefinitions="*"
                   HorizontalOptions="Fill"
                   x:Name="dailyForecast">
-            </Grid>
-            <Grid
+                </Grid>
+                <Grid
                 RowDefinitions="auto"
                 ColumnDefinitions="*, *"
                 ColumnSpacing="5"
                 x:Name="SunMoonData">
-            </Grid>
-        </VerticalStackLayout>
-    </ScrollView>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+        <Grid x:Name="LoadingOverlay"
+                IsVisible="False"
+                BackgroundColor="#99000000"
+                ZIndex="100"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
+            <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="15">
+                <ActivityIndicator
+                        IsRunning="{Binding Source={x:Reference LoadingOverlay}, Path=IsVisible}"
+                        Color="White"
+                        WidthRequest="50"
+                        HeightRequest="50" />
+                <Label
+                        Text="Aktualizowanie pogody..."
+                        TextColor="White"
+                        FontSize="18"
+                        HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>
