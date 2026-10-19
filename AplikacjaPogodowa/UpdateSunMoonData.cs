@@ -98,14 +98,14 @@ namespace Pogoda
             }, 0, 1);
             sunData.Add(new Label
             {
-                Text = sunrise + weather.DailyWeather?.Sunrise?[0].Substring(11, 5),
+                Text = sunrise + ((string.IsNullOrEmpty(weather.DailyWeather?.Sunrise?[0])) ? "brak" : weather.DailyWeather?.Sunrise?[0].Substring(11, 5)),
                 HorizontalTextAlignment = TextAlignment.Center,
                 VerticalTextAlignment = TextAlignment.Center,
                 FontSize = 20
             }, 0, 2);
             sunData.Add(new Label
             {
-                Text = sunset + weather.DailyWeather?.Sunset?[0].Substring(11, 5),
+                Text = sunset + ((string.IsNullOrEmpty(weather.DailyWeather?.Sunset?[0])) ? "brak" : weather.DailyWeather?.Sunset?[0].Substring(11, 5)),
                 HorizontalTextAlignment = TextAlignment.Center,
                 VerticalTextAlignment = TextAlignment.Center,
                 FontSize = 20
