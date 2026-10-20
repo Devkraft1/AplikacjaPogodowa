@@ -79,7 +79,8 @@ namespace AplikacjaPogodowa
                     {
                         Text = $"{location.Country_code} {location.Name}, {location.Admin1}",
                         CommandParameter = location,
-                        BackgroundColor = Colors.Transparent
+                        BackgroundColor = Colors.Transparent,
+                        FontSize = 20
                     };
                     cityButton.Clicked += SetLocation;
                     searchGrid.Add(new Border 
@@ -91,6 +92,8 @@ namespace AplikacjaPogodowa
                     Button favoriteButton = new Button
                     {
                         Text = $"F",
+                        FontSize = 30,
+                        BackgroundColor = Colors.Transparent
                     };
                     searchGrid.Add(new Border
                     {

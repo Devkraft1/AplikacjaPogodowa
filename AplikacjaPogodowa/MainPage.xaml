@@ -155,7 +155,9 @@
                         <Entry
                             BackgroundColor="Transparent"
                             Placeholder="Wpisz miasto..."
-                            Completed="ShowSearchResults"/>
+                            Completed="ShowSearchResults"
+                            FontSize="20"
+                            />
                     </Border>
                     <Border
                         Stroke="Gray"
@@ -163,8 +165,10 @@
                         Grid.Column="1"
                         Grid.Row="0">
                         <Button 
-                           x:Name="backBtn"
-                           Clicked="ToggleSearchMenu"/>
+                            BackgroundColor="Transparent"
+                            x:Name="backBtn"
+                            FontSize="30"
+                            Clicked="ToggleSearchMenu"/>
                     </Border>
                 </Grid>
             </ScrollView>
