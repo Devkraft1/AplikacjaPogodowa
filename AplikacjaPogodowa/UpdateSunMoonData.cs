@@ -65,6 +65,7 @@ namespace Pogoda
             string moonrise = "\ue3c1", moonset = "\ue3c2";
             string moonIcon = GetMoonPhaseIcon(weather.DailyWeather?.MoonPhase?[0] ?? 0);
             string moonPhaseName = GetMoonPhaseName(weather.DailyWeather?.MoonPhase?[0] ?? 0);
+            SunMoonData.Children.Clear();
             Grid sunData = new Grid
             {
                 HorizontalOptions = LayoutOptions.Fill,
@@ -150,7 +151,7 @@ namespace Pogoda
                 FontSize = 20
             }, 0, 2);
             moonData.Add(new Label {
-                Text = moonset + ((string.IsNullOrEmpty(weather.DailyWeather?.Moonset?[0])) ? "brak" : weather.DailyWeather?.Moonset?[0].Substring(11, 5)),
+                Text = moonset + ((string.IsNullOrEmpty(weather.DailyWeather?.Moonset?[1])) ? "brak" : weather.DailyWeather?.Moonset?[1].Substring(11, 5)),
                 HorizontalTextAlignment = TextAlignment.Center,
                 VerticalTextAlignment = TextAlignment.Center,
                 FontSize = 20

@@ -20,7 +20,8 @@
                     BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#2C2C2C}"
                     TextColor="{AppThemeBinding Light=#1B1B1B, Dark=#FFFFFF}"
                     Text="&#xeb1a; Miasto, Województwo"
-                    FontSize="20"/>
+                    FontSize="20"
+                    Clicked="ToggleSearchMenu"/>
                 </Border>
                 <Grid ColumnDefinitions="Auto,*"
                 HorizontalOptions="Fill"
@@ -121,11 +122,52 @@
                         WidthRequest="50"
                         HeightRequest="50" />
                 <Label
-                        Text="Aktualizowanie pogody..."
-                        TextColor="White"
-                        FontSize="18"
-                        HorizontalOptions="Center" />
+                    x:Name="loadingMessage"
+                    Text="Aktualizowanie pogody..."
+                    TextColor="White"
+                    FontSize="18"
+                    HorizontalOptions="Center" />
             </VerticalStackLayout>
+        </Grid>
+        <Grid
+            x:Name="searchMenu"
+            IsVisible="False"
+            BackgroundColor="#99000000"
+            ZIndex="99"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
+            <ScrollView
+                VerticalScrollBarVisibility="Never">
+                <Grid
+                    Margin="5,10,5,0"
+                    Padding="1"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1F1F1F}"
+                    ColumnDefinitions="*, auto"
+                    x:Name="searchGrid"
+                    SizeChanged="CalculateSearchRowHeight"
+                    ColumnSpacing="2"
+                    RowSpacing="2">
+                    <Border 
+                        Stroke="Gray"
+                        StrokeThickness="1"
+                        Grid.Column="0"
+                        Grid.Row="0">
+                        <Entry
+                            BackgroundColor="Transparent"
+                            Placeholder="Wpisz miasto..."
+                            Completed="ShowSearchResults"/>
+                    </Border>
+                    <Border
+                        Stroke="Gray"
+                        StrokeThickness="1"
+                        Grid.Column="1"
+                        Grid.Row="0">
+                        <Button 
+                           x:Name="backBtn"
+                           Clicked="ToggleSearchMenu"/>
+                    </Border>
+                </Grid>
+            </ScrollView>
         </Grid>
     </Grid>
 </ContentPage>
